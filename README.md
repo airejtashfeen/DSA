@@ -17,7 +17,7 @@ This is a cloned project written using HTML and styled with CSS.
 
 1. Clone this repository.
 2. Navigate to the project directory.
-3. Add your code in a new branch as explained below under [Contributing] (#contributing) and send me a pull request
+3. Add your code in a new branch as explained below under [Contributing](#contributing) and send me a pull request.
 
 ## Usage
 
