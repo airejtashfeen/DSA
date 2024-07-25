@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void printSubsequence(int index, vector<int>& ds, int s, int sum, vector<int>& nums, int n, vector<vector<int>>& dp) {
+void printSubsequence(int index, vector<int>& ds, int s, int sum, vector<int>& nums, int n) {
     if (index == n) {
         if (s == sum) {
             for (size_t i = 0; i < ds.size(); ++i) {
@@ -14,34 +14,28 @@ void printSubsequence(int index, vector<int>& ds, int s, int sum, vector<int>& n
         return;
     }
 
-    // Check if this state is already computed
-    if (dp[index][s] != -1) return;
-
     // Pick the current element
     ds.push_back(nums[index]);
     s += nums[index];
-    printSubsequence(index + 1, ds, s, sum, nums, n, dp);
+    printSubsequence(index + 1, ds, s, sum, nums, n);
 
     // Backtrack: remove the last added element and adjust the sum
     s -= nums[index];
     ds.pop_back();
 
     // Do not pick the current element
-    printSubsequence(index + 1, ds, s, sum, nums, n, dp);
-
-    // Mark this state as computed
-    dp[index][s] = 1;
+    printSubsequence(index + 1, ds, s, sum, nums, n);
 }
 
 int main() {
-    vector<int> nums = {1, 2, 1};
-    int n = nums.size();
-    int targetSum = 2;
+    vector<int> nums;
+    nums.push_back(1); 
+    nums.push_back(2); 
+    nums.push_back(1); 
+    int n = nums.size(); 
+    int sum = 2; 
 
-    vector<int> ds;
-    // Initialize memoization table with -1 (indicating not computed)
-    vector<vector<int>> dp(n, vector<int>(targetSum + 1, -1));
-    printSubsequence(0, ds, 0, targetSum, nums, n, dp);
-
+    vector<int> ds; 
+    printSubsequence(0, ds, 0, sum, nums, n); 
     return 0;
 }
